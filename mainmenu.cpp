@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  hackthenestProjFIRM
-//
-//  Created by mimi munshi on 4/5/25.
-//
-
 // disasters: evicted, house burned down,
 // it rains --> collaspses + flooding,
 // collaspes, lack of protective gear, drowning, 
@@ -12,8 +5,6 @@
 // house when asking for decent money, child died in the mines,
 // no food you have no choice but to hunt for an ape, 
 // you found a piece of colbalt, sharpened tool, tetanus, 
-
-
 
 #include <iostream>
 #include <string>
@@ -24,31 +15,36 @@ using namespace std;
 
 int lifePts = 100;
 
+//function prototypes
+void displayHome();
+void printLifeBar(int current);
+Miner displayStart(Miner);
+
+//structs
 struct Miner
 {
-    int age;
+    int age, familySize;
     char gender;
     string name;
 
 };
 Miner person;
 
-void displayHome();
-Miner displayStart(Miner);
+//global variables
 int day1(int, char, string, int&);
 int day2(int, char, string, int&);
 int day3(int, char, string, int&);
 int day4(int, char, string, int&);
 int day5(int, char, string, int&);
-void disaster();
 
+//MAIN FUNCTION
 int main() {
 
     displayHome();
 
-
     return 0;
 }
+
 
 void displayHome()
 {
@@ -66,22 +62,55 @@ void displayHome()
         cout << "\nYou chose to quit.\n";
         return;
     }
-
-
-
-
 }
+
+void printLifeBar(int current) {
+    int max = 100;
+    int barWidth = 10; // show only 10 characters total
+    int filledBars = (current * barWidth) / max;
+
+    cout << "[";
+    for (int i = 0; i < barWidth; ++i) {
+        if (i < filledBars)
+            cout << "#";
+        else
+            cout << "-";
+    }
+    cout << "] " << current << "/" << max << " LP" << endl;
+}
+
 Miner displayStart(Miner p1)
 {
     Miner tempStruct;
     cin.ignore();
-    cout << "\nEnter name: ";
+    cout << "\nEnter character name: ";
     getline(cin, tempStruct.name);
-    cout << "Enter age: ";
+    cout << "Enter character age: ";
     cin >> tempStruct.age;
-    cout << "Enter gender (m/f): ";
+    cout << "Enter character gender (m/f): ";
     cin.ignore();
     cin.get(tempStruct.gender);
+    if(tempStruct.gender == 'm')
+    {
+        cout << R"(    
+                  O
+                 /|\   <-YOU
+                 / \ )" << endl;
+    }
+    else if(tempStruct.gender == 'f')
+    {
+        cout << R"(    
+                  O
+                 /|\   <-YOU
+                 /_\ )" << endl;
+    }
+    cout << "You start with 100 life points.\n";
+    printLifeBar(100);
+    cout << "Choose a number between 0-5";
+    cout << "\n Hello " << tempStruct.name << "...\n";
+    cout << "Choose a number between 0-5: ";
+    cin.ignore();
+    cin >> tempStruct.familySize;
     return tempStruct;
 }
 
@@ -109,22 +138,25 @@ int day5(int age, char gender, string name, int& points)
 {
     return 0;
 }
-void disaster()
+
+void events()
 {
     srand(time(0));
     int choice = rand() % 10;
-    
     switch (choice)
-    {
-    case 1:
-        break;
-    case 2:
-        break;
-    case 3:
-        break;
-    case 4:
-        break;
-    case 5:
-        break;
+    {   
+        case 1:
+        {
+            cout << R"( 
+                           (   )
+                         (      )
+                        (______)__)
+                          ' ' ' '
+                           ' ' ' ' 
+)" << endl;
+            cout << "It rained, and some of the cave collapsed! You lose 5 LP.";
+
+        }
+
     }
 }
