@@ -15,11 +15,6 @@ using namespace std;
 
 int lifePts = 100;
 
-//function prototypes
-void displayHome();
-void printLifeBar(int current);
-Miner displayStart(Miner);
-
 //structs
 struct Miner
 {
@@ -29,6 +24,11 @@ struct Miner
 
 };
 Miner person;
+
+//function prototypes
+void displayHome();
+void printLifeBar(int current);
+Miner displayStart(Miner);
 
 //global variables
 int day1(int, char, string, int&);
