@@ -7,22 +7,12 @@ using namespace std;
 
 int lifePts = 100;
 
-//show life bar
-void printLifeBar(int current) {
-    int max = 100;
-    int barWidth = 10; // show only 10 characters total
-    int filledBars = (current * barWidth) / max;
+//function prototypes
+void displayHome();
+void printLifeBar(int current);
+Miner displayStart(Miner);
 
-    cout << "[";
-    for (int i = 0; i < barWidth; ++i) {
-        if (i < filledBars)
-            cout << "#";
-        else
-            cout << "-";
-    }
-    cout << "] " << current << "/" << max << " HP" << endl;
-}
-
+//structs
 struct Miner
 {
     int age, familySize;
@@ -32,8 +22,7 @@ struct Miner
 };
 Miner person;
 
-void displayHome();
-Miner displayStart(Miner);
+//global variables
 int day1(int, char, string, int&);
 int day2(int, char, string, int&);
 int day3(int, char, string, int&);
@@ -42,12 +31,12 @@ int day5(int, char, string, int&);
 
 //MAIN FUNCTION
 int main() {
-    printLifeBar(62);
-    displayHome();
 
+    displayHome();
 
     return 0;
 }
+
 
 void displayHome()
 {
@@ -65,22 +54,50 @@ void displayHome()
         cout << "\nYou chose to quit.\n";
         return;
     }
-
-
-
-
 }
+
+void printLifeBar(int current) {
+    int max = 100;
+    int barWidth = 10; // show only 10 characters total
+    int filledBars = (current * barWidth) / max;
+
+    cout << "[";
+    for (int i = 0; i < barWidth; ++i) {
+        if (i < filledBars)
+            cout << "#";
+        else
+            cout << "-";
+    }
+    cout << "] " << current << "/" << max << " HP" << endl;
+}
+
 Miner displayStart(Miner p1)
 {
     Miner tempStruct;
     cin.ignore();
-    cout << "\nEnter name: ";
+    cout << "\nEnter character name: ";
     getline(cin, tempStruct.name);
-    cout << "Enter age: ";
+    cout << "Enter character age: ";
     cin >> tempStruct.age;
-    cout << "Enter gender (m/f): ";
+    cout << "Enter character gender (m/f): ";
     cin.ignore();
     cin.get(tempStruct.gender);
+    if(tempStruct.gender == 'm')
+    {
+        cout << R"(    
+                  O
+                 /|\   <-YOU
+                 / \ )" << endl;
+    }
+    else if(tempStruct.gender == 'f')
+    {
+        cout << R"(    
+                  O
+                 /|\   <-YOU
+                 /_\ )" << endl;
+    }
+    cout << "You start with 100 life points.\n";
+    printLifeBar(100);
     cout << "Choose a number between 0-5";
     cout << "\n Hello " << tempStruct.name << "...\n";
     cout << "Choose a number between 0-5: ";
