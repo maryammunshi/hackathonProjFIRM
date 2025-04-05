@@ -111,6 +111,7 @@ Miner displayStart(Miner p1)
 void day1()
 {
     char response1, response2, response3;
+
     cout << "It's raining this morning." << R"( 
                            (   )
                          (      )
@@ -126,6 +127,7 @@ void day1()
         lifePts += 5;
         printLifeBar(lifePts);
         //insert pickaxe here
+
         cout << "\nYou are busy working, and don't notice the ceiling above you." << R"(
         _______________________________
         \                             /
@@ -137,29 +139,46 @@ void day1()
         <<"The mine's weak cieling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose 5 LP.\n\n";
         lifePts -= 5;
         printLifeBar(lifePts);
-        cout << "You rip off some of your shirt to use as a bandage and get back to work.\n After an hour you're really feeling fatigued. Should you go home for the day? (y/n) ";
+
+        cout << "\nYou rip off some of your shirt to use as a bandage and get back to work.\nAfter an hour you're really feeling fatigued. Should you go home for the day? (y/n) ";
         cin >> response2;
+
+        //they leave
         if (response2 == 'y' || response2 == 'Y')
         {
             //idk yet maybe more money
         }
-        else if (response1 == 'n' || response1 == 'n')
+        //they stay
+        else if (response2 == 'n' || response2 == 'n')
         {
-            cout << "You earn more money for working longer. You gain 5 LP.";
+            cout << "\n\nYou earn more money for working longer. You gain 5 LP.\n\n";
             lifePts -= 5;
             printLifeBar(lifePts);
 
-            cout << "The rain outside gets heavier. Rainwater floods one of the main shafts. Do you try to escape? (y/n) ";
+            cout << "\nThe rain outside gets heavier. Rainwater floods one of the main shafts."
+                << R"( 
+                           ___________
+                          /           \
+                         | ~ FLOODED ~ |
+                         |__~__~__~__~_|)" 
+                << "\nDo you try to escape? (y/n) ";
             cin >> response3;
-            if (response2 == 'y' || response2 == 'Y')
+            //escape
+            if (response3 == 'y' || response3 == 'Y')
             {
                 cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose 5 LP.\n\n";
                 lifePts -= 5;
                 printLifeBar(lifePts);
             }
-            else if (response1 == 'n' || response1 == 'n')
+            //give up
+            else if (response3 == 'n' || response3 == 'n')
             {
-                cout << "You were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive. You lose 20 LP.\n\n";
+                cout << "You were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive." 
+                    << R"(
+                        (-_-)
+                         /|\ 
+                         / \   )"
+                    << "\nYou lose 20 LP.\n\n";
                 lifePts -= 20;
                 printLifeBar(lifePts);
             }
