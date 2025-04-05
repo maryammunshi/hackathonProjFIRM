@@ -61,6 +61,7 @@ void displayHome()
 Miner displayStart(Miner p1)
 {
     Miner tempStruct;
+    cin.ignore();
     cout << "\nEnter name: ";
     getline(cin, tempStruct.name);
     cout << "Enter age: ";
