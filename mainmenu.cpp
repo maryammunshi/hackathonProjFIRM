@@ -55,17 +55,17 @@ void displayHome()
     cin.get(key);
     if (key == 's' || key == 'S')
     {
-        cout << "You are a cobalt miner in the Democratic Republic of Congo (DRC).\n";
-        cout << "The morning is cold and damp as you, along with the other miners, gather at the entrance"
-            << "\nto the cobalt mine. The ground is slippery, the air thick with dust, "
-            << "and the smell of wet rock. You’ve started the week with 100 points, \nwhich represents "
-            << "your life bar. But this will not last forever, "
-            << "and every decision today will impact the rest of the week.\n"
-            << "Your goal is to not die – that is, reach 0 in the health bar – by the end of the week.\n"
-            << "Although the Democratic Republic of Congo (DRC) is abundant in natural resources, it remains the second "
-            << "poorest country globally. The life expectancy in DRC is only 47 years for men and 51 years for women. "
-            << "This is significantly lower than the average of 81.2 years in the UK.\n";
-        cout << "Will *you* be able to survive the DRC?" << endl;
+        cout << "\nYou are a cobalt miner in the Democratic Republic of Congo (DRC).\n"<<endl;
+cout << "The morning is cold and damp. You, along with the other miners, \ngather at the entrance"
+    << "to the cobalt mine. The ground is slippery, \nand the air is thick with dust "
+    << "and the smell of wet rock." << endl;
+cout<<"\nYou’ve started the week with 100 points, which represents "
+    << "your life bar. \nBut this will not last forever, and every decision today will impact the \nrest of the week.\n"
+    << "\nYour goal is to not die – that is, reach 0 in the health bar – by the end of the week.\n"
+    << "Although the Democratic Republic of Congo (DRC) is abundant in natural resources, it \nremains the second "
+    << "poorest country globally. The life expectancy in DRC is only 47 years \nfor men and 51 years for women. "
+    << "This is significantly lower than the average of 81.2 \nyears in the UK.\n";
+cout << "\nWill *you* be able to survive the DRC?\n" << endl;
         person = displayStart(person);
     }
     else
