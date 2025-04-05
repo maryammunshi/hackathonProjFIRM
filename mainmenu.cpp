@@ -69,8 +69,8 @@ Miner displayStart(Miner p1)
     cout << "Enter gender (m/f): ";
     cin.ignore();
     cin.get(tempStruct.gender);
-    return tempStruct;
     cout<<"Choose a number between 0-5";
+    cin.ignore();
     cin>>tempStruct.familySize;
     return tempStruct;
 }
