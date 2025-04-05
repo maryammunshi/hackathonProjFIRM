@@ -55,6 +55,17 @@ void displayHome()
     cin.get(key);
     if (key == 's' || key == 'S')
     {
+        cout << "You are a cobalt miner in the Democratic Republic of Congo (DRC).\n";
+        cout << "The morning is cold and damp as you, along with the other miners, gather at the entrance"
+            << "\nto the cobalt mine. The ground is slippery, the air thick with dust, "
+            << "and the smell of wet rock. You’ve started the week with 100 points, \nwhich represents "
+            << "your life bar. But this will not last forever, "
+            << "and every decision today will impact the rest of the week.\n"
+            << "Your goal is to not die – that is, reach 0 in the health bar – by the end of the week.\n"
+            << "Although the Democratic Republic of Congo (DRC) is abundant in natural resources, it remains the second "
+            << "poorest country globally. The life expectancy in DRC is only 47 years for men and 51 years for women. "
+            << "This is significantly lower than the average of 81.2 years in the UK.\n";
+        cout << "Will *you* be able to survive the DRC?" << endl;
         person = displayStart(person);
     }
     else
@@ -83,11 +94,11 @@ Miner displayStart(Miner p1)
 {
     Miner tempStruct;
     cin.ignore();
-    cout << "\nEnter character name: ";
+    cout << "\nEnter your character's name: ";
     getline(cin, tempStruct.name);
-    cout << "Enter character age: ";
+    cout << "Enter your character's age: ";
     cin >> tempStruct.age;
-    cout << "Enter character gender (m/f): ";
+    cout << "Enter your character's gender (m/f): ";
     cin.ignore();
     cin.get(tempStruct.gender);
     if (tempStruct.gender == 'm')
@@ -190,16 +201,5 @@ void events()
         lifePts -= 5;
         break;
     }
-    case 5:
-    {
-        cout << R"(
-                         |\
-                         |==>
-                         |/  )" << endl;
-        cout << "You were starving. With no other food available, you tracked and killed an ape. It gave you meat, but the guilt remains. You lose 3 LP." << endl;
-        lifePts -= 5;
-        break;
-    }
-    
     }
 }
