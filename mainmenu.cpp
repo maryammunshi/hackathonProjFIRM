@@ -110,7 +110,7 @@ Miner displayStart(Miner p1)
 
 void day1()
 {
-    char response1;
+    char response1, response2, response3;
     cout << "It's raining this morning." << R"( 
                            (   )
                          (      )
@@ -137,12 +137,39 @@ void day1()
         <<"The mine's weak cieling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose 5 LP.\n\n";
         lifePts -= 5;
         printLifeBar(lifePts);
+        cout << "You rip off some of your shirt to use as a bandage and get back to work.\n After an hour you're really feeling fatigued. Should you go home for the day? (y/n) ";
+        cin >> response2;
+        if (response2 == 'y' || response2 == 'Y')
+        {
+            //idk yet maybe more money
+        }
+        else if (response1 == 'n' || response1 == 'n')
+        {
+            cout << "You earn more money for working longer. You gain 5 LP.";
+            lifePts -= 5;
+            printLifeBar(lifePts);
+
+            cout << "The rain outside gets heavier. Rainwater floods one of the main shafts. Do you try to escape? (y/n) ";
+            cin >> response3;
+            if (response2 == 'y' || response2 == 'Y')
+            {
+                cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose 5 LP.\n\n";
+                lifePts -= 5;
+                printLifeBar(lifePts);
+            }
+            else if (response1 == 'n' || response1 == 'n')
+            {
+                cout << "You were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive. You lose 20 LP.\n\n";
+                lifePts -= 20;
+                printLifeBar(lifePts);
+            }
+        }
     }
 
     //they dont go to the mines
-    if (response1 == 'n' || response1 == 'N')
+    else if (response1 == 'n' || response1 == 'N')
     {
-        cout << "You don't get paid so you can't make rent. The landlord loks the door and throws your belongings into the street.\n";
+        cout << "You don't get paid so you can't make rent. The landlord locks the door and throws your belongings into the street.\n";
         cout << R"( 
                           /\    
                          /  \   
