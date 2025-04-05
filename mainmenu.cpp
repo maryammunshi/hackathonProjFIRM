@@ -19,15 +19,15 @@ struct Miner
     string name;
     
 };
+Miner person;
 
 void displayHome();
-void displayStart(Miner);
+Miner displayStart(Miner);
 int day1(int, char, string, int&);
 int day2(int, char, string, int&);
 int day3(int, char, string,int&);
 int day4(int, char, string, int&);
 int day5(int, char, string, int&);
-
 
 int main() {
     
@@ -40,14 +40,13 @@ int main() {
 void displayHome()
 {
     char key;
-    Miner person;
     cout << "  5 Days of Life in the Mines\n";
     cout << "------------------------------------\n";
     cout << "PRESS S TO START, ANY OTHER KEY TO QUIT: ";
     cin.get(key);
     if (key == 's' || key == 'S')
     {
-        displayStart(person);
+        person = displayStart(person);
     }
     else
     {
@@ -59,18 +58,17 @@ void displayHome()
     
     
 }
-void displayStart(Miner p1)
+Miner displayStart(Miner p1)
 {
-    
+    Miner tempStruct;
     cout << "\nEnter name: ";
-    cin.ignore();
-    getline(cin, p1.name);
+    getline(cin, tempStruct.name);
     cout << "Enter age: ";
-    cin >> p1.age;
+    cin >> tempStruct.age;
     cout << "Enter gender (m/f): ";
     cin.ignore();
-    cin.get(p1.gender);
- 
+    cin.get(tempStruct.gender);
+    return tempStruct;
 }
 
 int day1(int age, char gender, string name, int &points)
