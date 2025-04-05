@@ -145,18 +145,50 @@ void events()
     int choice = rand() % 10;
     switch (choice)
     {   
-        case 1:
+        case 0:
         {
             cout << R"( 
                            (   )
                          (      )
                         (______)__)
                           ' ' ' '
-                           ' ' ' ' 
-)" << endl;
-            cout << "It rained, and some of the cave collapsed! You lose 5 LP.";
-
+                           ' ' ' ' )" << endl;
+            cout << "It rained heavily last night. The mine's weak walls couldn't handle the pressure. A portion collapsed while you were inside. You lose 5 LP.";
+            lifePts -= 5;
+            break;
         }
-
+        case 1:
+        {
+            cout << R"( 
+                          /\    
+                         /  \   
+                        /____\  
+                        | [] |  
+                        |____| )" << endl;
+            cout << "Your family couldn't make rent. The landlord locked the door and threw your belongings into the street. You spent the night exposed and hungry. You lose 5 LP." << endl;
+            lifePts -= 5;
+            break;
+        }
+        case 2:
+        {
+            cout << R"( 
+                           ___________
+                          /           \
+                         | ~ FLOODED ~ |
+                         |__~__~__~__~_|)" << endl;
+            cout << "Rainwater flooded one of the main shafts. You barely escaped before it filled completely. You're soaked and exhausted. You lose 5 LP." << endl;
+            lifePts -= 5;
+            break;
+        }
+        case 3:
+        {
+            cout << R"(
+                        (-_-)
+                         /|\ 
+                         / \   )" << endl;
+            cout << "A mosquito bite turned deadly. Fever, chills, and pain hit you all at once. You have malaria. You lose 5 LP." << endl;
+            lifePts -= 5;
+            break;
+        }
     }
 }
