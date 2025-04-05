@@ -29,17 +29,11 @@ Miner person;
 void displayHome();
 void printLifeBar(int current);
 Miner displayStart(Miner);
-
-//global variables
-int day1(int, char, string, int&);
-int day2(int, char, string, int&);
-int day3(int, char, string, int&);
-int day4(int, char, string, int&);
-int day5(int, char, string, int&);
+void day1();
 
 //MAIN FUNCTION
 int main() {
-
+    day1();
     displayHome();
 
     return 0;
@@ -55,17 +49,6 @@ void displayHome()
     cin.get(key);
     if (key == 's' || key == 'S')
     {
-        cout << "\nYou are a cobalt miner in the Democratic Republic of Congo (DRC).\n"<<endl;
-cout << "The morning is cold and damp. You, along with the other miners, \ngather at the entrance"
-    << "to the cobalt mine. The ground is slippery, \nand the air is thick with dust "
-    << "and the smell of wet rock." << endl;
-cout<<"\nYou’ve started the week with 100 points, which represents "
-    << "your life bar. \nBut this will not last forever, and every decision today will impact the \nrest of the week.\n"
-    << "\nYour goal is to not die – that is, reach 0 in the health bar – by the end of the week.\n"
-    << "Although the Democratic Republic of Congo (DRC) is abundant in natural resources, it \nremains the second "
-    << "poorest country globally. The life expectancy in DRC is only 47 years \nfor men and 51 years for women. "
-    << "This is significantly lower than the average of 81.2 \nyears in the UK.\n";
-cout << "\nWill *you* be able to survive the DRC?\n" << endl;
         person = displayStart(person);
     }
     else
@@ -94,11 +77,11 @@ Miner displayStart(Miner p1)
 {
     Miner tempStruct;
     cin.ignore();
-    cout << "\nEnter your character's name: ";
+    cout << "\nEnter character name: ";
     getline(cin, tempStruct.name);
-    cout << "Enter your character's age: ";
+    cout << "Enter character age: ";
     cin >> tempStruct.age;
-    cout << "Enter your character's gender (m/f): ";
+    cout << "Enter character gender (m/f): ";
     cin.ignore();
     cin.get(tempStruct.gender);
     if (tempStruct.gender == 'm')
@@ -116,7 +99,7 @@ Miner displayStart(Miner p1)
                  /_\ )" << endl;
     }
     cout << "You start with 100 life points.\n";
-    printLifeBar(100);
+    printLifeBar(lifePts);
     cout << "Choose a number between 0-5";
     cout << "\n Hello " << tempStruct.name << "...\n";
     cout << "Choose a number between 0-5: ";
@@ -125,29 +108,52 @@ Miner displayStart(Miner p1)
     return tempStruct;
 }
 
-int day1(int age, char gender, string name, int& points)
+void day1()
 {
-    return 0;
-}
+    char response1;
+    cout << "It's raining this morning." << R"( 
+                           (   )
+                         (      )
+                        (______)__)
+                          ' ' ' '
+                           ' ' ' ' )" << endl << "Will you go to work? (y / n) \n";
+    cin >> response1;
 
-int day2(int age, char gender, string name, int& points)
-{
-    return 0;
-}
+    //they go to the mines
+    if(response1 == 'y' || response1 == 'Y') 
+    {
+        cout << "You arrive at the mine and decend.\n" << "You are the first one in and find a new pickaxe. You gain 5 LP.\n\n";
+        lifePts += 5;
+        printLifeBar(lifePts);
+        //insert pickaxe here
+        cout << "\nYou are busy working, and don't notice the ceiling above you." << R"(
+        _______________________________
+        \                             /
+         \   _____       _____       /
+          \_/     \_____/     \_____/ 
+              ---
+             /   \
+              ---  )" << endl 
+        <<"The mine's weak cieling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose 5 LP.\n\n";
+        lifePts -= 5;
+        printLifeBar(lifePts);
+    }
 
-int day3(int age, char gender, string name, int& points)
-{
-    return 0;
-}
+    //they dont go to the mines
+    if (response1 == 'n' || response1 == 'N')
+    {
+        cout << "You don't get paid so you can't make rent. The landlord loks the door and throws your belongings into the street.\n";
+        cout << R"( 
+                          /\    
+                         /  \   
+                        /____\  
+                        | [] |  
+                        |____| )" << endl;
 
-int day4(int age, char gender, string name, int& points)
-{
-    return 0;
-}
-
-int day5(int age, char gender, string name, int& points)
-{
-    return 0;
+        cout << "You lose 5 LP.\n" << endl;
+        lifePts -= 5;
+        printLifeBar(lifePts);
+    }
 }
 
 void events()
@@ -201,35 +207,16 @@ void events()
         lifePts -= 5;
         break;
     }
-    case 4:
-    {
-        cout << R"(
-                              ______
-                             | |    |
-                             | |    |
-                        _____|_|    |
-                       (  (         |
-                        \__\________|
-                         
-                         )" << endl;
-            cout << "You found some shoes! You get 5 LP" << endl;
-            lifePts+=5;
-
-        
-    }
     case 5:
     {
-            cout << R"(
-                             
-              _
-       $$    / \       _______
-             \_/     / \
-                    /   \
-                   /     \
-                          \
-                           \
-)" << endl;
-            cout << "You found some cobalt! You get 5 LP." << endl;    
+        cout << R"(
+                         |\
+                         |==>
+                         |/  )" << endl;
+        cout << "You were starving. With no other food available, you tracked and killed an ape. It gave you meat, but the guilt remains. You lose 3 LP." << endl;
+        lifePts -= 5;
+        break;
     }
+    
     }
 }
