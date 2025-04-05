@@ -14,7 +14,7 @@ int lifePts = 100;
 
 struct Miner
 {
-    int age;
+    int age,familySize;
     char gender;
     string name;
     
@@ -69,6 +69,9 @@ Miner displayStart(Miner p1)
     cout << "Enter gender (m/f): ";
     cin.ignore();
     cin.get(tempStruct.gender);
+    return tempStruct;
+    cout<<"Choose a number between 0-5";
+    cin>>tempStruct.familySize;
     return tempStruct;
 }
 
