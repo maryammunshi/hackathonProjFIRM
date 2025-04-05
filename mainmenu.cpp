@@ -201,5 +201,35 @@ void events()
         lifePts -= 5;
         break;
     }
+    case 4:
+    {
+        cout << R"(
+                              ______
+                             | |    |
+                             | |    |
+                        _____|_|    |
+                       (  (         |
+                        \__\________|
+                         
+                         )" << endl;
+            cout << "You found some shoes! You get 5 LP" << endl;
+            lifePts+=5;
+
+        
+    }
+    case 5:
+    {
+            cout << R"(
+                             
+              _
+       $$    / \       _______
+             \_/     / \
+                    /   \
+                   /     \
+                          \
+                           \
+)" << endl;
+            cout << "You found some cobalt! You get 5 LP." << endl;    
+    }
     }
 }
