@@ -1,11 +1,3 @@
-/ disasters: evicted, house burned down,
-// it rains --> collaspses + flooding,
-// collaspes, lack of protective gear, drowning, 
-// malaria, birth defects, asked to leave buying 
-// house when asking for decent money, child died in the mines,
-// no food you have no choice but to hunt for an ape, 
-// you found a piece of colbalt, sharpened tool, tetanus, 
-
 #include <iostream>
 #include <string>
 #include <thread>
@@ -37,7 +29,7 @@ void goToMines();
 void escape();
 void stayAtWork();
 void pointDecrease();
-void dead();
+bool dead();
 void goHome();
 void flood();
 void foodSearch();
@@ -159,7 +151,7 @@ void raining()
 void goToMines()
 {
     char stayAtMine;
-    cout << "You arrive at the mine and descend.\n" << "You quickly get to work. The enivorment is toxic. You lose 5 LP\n\n";
+    cout << "You arrive at the mine and descend.\n" << "You quickly get to work. The enivorment is toxic. ";
     pointDecrease();
     printLifeBar(lifePts);
     //insert pickaxe here
@@ -171,7 +163,7 @@ void goToMines()
               ---
              /   \
               ---  )" << endl
-        << "The mine's weak ceiling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose 5 LP.\n\n";
+        << "The mine's weak ceiling couldn't handle the pressure from the rain. A portion collpses while you are inside.\n\n";
     pointDecrease();
     printLifeBar(lifePts);
 
@@ -188,9 +180,7 @@ void goToMines()
 void stayAtWork()
 {
     char leave;
-    cout << "\n\nYou earn more money for working longer. You gain 5 LP.\n";
-    pointDecrease();
-    printLifeBar(lifePts);
+    cout << "\n\nYou earn more money for working longer, but you're risking your life to do so.\n";
 
     cout << "\n\nThe rain outside gets heavier. Rainwater floods one of the main shafts. Do you try to escape? (y/n) ";
     cin >> leave;
@@ -211,7 +201,6 @@ void stayHome()
                         | [] |  
                         |____| )" << endl;
 
-    cout << "You lose 5 LP.\n" << endl;
     pointDecrease();
     printLifeBar(lifePts);
 
@@ -225,13 +214,13 @@ void flood()
                          (-_-)
                           /|\ 
                           / \   )"
-        << "\nYou lose 20 LP.\n\n";
+        << "\n";
     pointDecrease();
     printLifeBar(lifePts);
 }
 void escape()
 {
-    cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose 5 LP.\n\n";
+    cout << "You barely escape before it fills completely. You're soaked and exhausted.\n\n";
     pointDecrease();
     printLifeBar(lifePts);
 }
@@ -262,7 +251,6 @@ void hunt()
         cout << "\nYou venture into the jungle and after a few hours, you successfully track and kill an ape.\n\n";
         cout << "While the meat will feed you, the risk was great. It is illegal to hunt " 
             << "for apes and dangerous too, but what else was there to eat?\n\n";
-        cout << "You lose 3 LP from the stress of killing an animal for food.\n\n";
         pointDecrease();
         printLifeBar(lifePts);
         bedTime();
@@ -270,8 +258,7 @@ void hunt()
 }
 void search()
 {
-    cout << "You spend the rest of the day searching for edible fruits but find little to satisfy your hunger.\n\n";
-    cout << "You lose 2 LP from hunger and fatigue.\n\n";
+    cout << "You spend the rest of the day searching for edible fruits but find little to satisfy your hunger. You're exhausted and still hungry\n\n";
     pointDecrease();
     printLifeBar(lifePts);
     bedTime();
@@ -291,25 +278,32 @@ void pointDecrease()
 {
     if (person.age > 0 && person.age < 18)
     {
-        lifePts -= 10;
         if (person.gender == 'f')
         {
-            lifePts -= 10;
+            lifePts -= 20;
+            cout << "You lose 20 LP. \n ";
         }
         else {
-            lifePts -= 5;
+            lifePts -= 15;
+            cout << "You lose 15 LP. \n ";
         }
 
     }
+    else if (person.gender == 'm')
+    {
+        lifePts -= 10;
+        cout << "You lose 10 LP. \n ";
+    }
     else
     {
-        lifePts -= 5;
+        lifePts -= 15;
+        cout << "You lose 15 LP. \n ";
     }
+}
 bool dead()
 {
     if (lifePts <= 0)
     {
-        //
         return true;
     }
     return false;
