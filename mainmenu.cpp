@@ -83,14 +83,14 @@ void printLifeBar(int current) {
     int barWidth = 10; // show only 10 characters total
     int filledBars = (current * barWidth) / max;
 
-    cout << "[";
+    cout << "	\033[34m[";
     for (int i = 0; i < barWidth; ++i) {
         if (i < filledBars)
             cout << "♡"; //or cout<<\u2665;
         else
             cout << "-";
     }
-    cout << "] " << current << "/" << max << " LP" << endl;
+    cout << "] " << current << "/" << max << " LP\033[0m" << endl;
 }
 
 Miner displayStart(Miner p1)
@@ -125,7 +125,7 @@ Miner displayStart(Miner p1)
 
 void day1()
 {
-    raining();         
+    raining();
 
     //cout << "The future looks bleak. Your family depends on you," 
       //      << "but without work, survival grows invreasingly difficult.\n";
@@ -188,7 +188,7 @@ void stayAtWork()
     if (leave == 'y' || leave == 'Y')
         escape();
     else if (leave == 'n' || leave == 'N')
-      flood();
+        flood();
 }
 void stayHome()
 {
@@ -223,7 +223,6 @@ void escape()
     cout << "You barely escape before it fills completely. You're soaked and exhausted.\n\n";
     pointDecrease();
     printLifeBar(lifePts);
-    kwanga();
 }
 void goHome()
 {
@@ -250,7 +249,7 @@ void hunt()
 {
     {
         cout << "\nYou venture into the jungle and after a few hours, you successfully track and kill an ape.\n\n";
-        cout << "While the meat will feed you, the risk was great. It is illegal to hunt " 
+        cout << "While the meat will feed you, the risk was great. It is illegal to hunt "
             << "for apes and dangerous too, but what else was there to eat?\n\n";
         pointDecrease();
         printLifeBar(lifePts);
@@ -266,7 +265,7 @@ void search()
 }
 void kwanga()
 {
-    cout << "\n\nYou have little money, but you scrape enough together to "
+    cout << "You have little money, but you scrape enough together to "
         << "buy cassava to make kwanga (fermented cassava bread).\n";
     bedTime();
     return;
@@ -282,23 +281,23 @@ void pointDecrease()
         if (person.gender == 'f')
         {
             lifePts -= 20;
-            cout << "You lose 20 LP. \n ";
+            cout << "\033[31mYou lose 20 LP. \n\033[0m ";
         }
         else {
             lifePts -= 15;
-            cout << "You lose 15 LP. \n ";
+            cout << "\033[31mYou lose 15 LP. \n\033[0m ";
         }
 
     }
     else if (person.gender == 'm')
     {
         lifePts -= 10;
-        cout << "You lose 10 LP. \n ";
+        cout << "\033[31mYou lose 10 LP. \n\033[0m ";
     }
     else
     {
         lifePts -= 15;
-        cout << "You lose 15 LP. \n ";
+        cout << "\033[31mYou lose 15 LP. \n\033[0m ";
     }
 }
 bool dead()
