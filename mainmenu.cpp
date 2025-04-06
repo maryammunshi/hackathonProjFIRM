@@ -33,8 +33,8 @@ void day1();
 
 //MAIN FUNCTION
 int main() {
-    day1();
     displayHome();
+    day1();
 
     return 0;
 }
@@ -160,7 +160,7 @@ void day1()
         }
 
         //they stay
-        else if (boolStayHome == 'n' || boolStayHome == 'n')
+        else if (stayAtMine == 'n' || stayAtMine == 'N')
         {
             cout << "You earn more money for working longer. You gain 5 LP.";
             lifePts -= 5;
@@ -168,7 +168,7 @@ void day1()
 
             cout << "The rain outside gets heavier. Rainwater floods one of the main shafts. Do you try to escape? (y/n) ";
             cin >> boolEscape;
-            if (stayAtMine == 'y' || stayAtMine == 'Y')
+            if (boolEscape == 'y' || boolEscape == 'Y')
             {
                 cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose 5 LP.\n\n";
                 lifePts -= 5;
@@ -176,7 +176,7 @@ void day1()
             }
 
             //give up
-            else if (boolStayHome == 'n' || boolStayHome == 'n')
+            else if (boolEscape == 'n' || boolEscape == 'N')
             {
                 cout << "You were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive."
                     << R"(
@@ -193,6 +193,7 @@ void day1()
     //they dont go to the mines
     else if (boolStayHome == 'n' || boolStayHome == 'N')
     {
+        string foodSearch;
         cout << "You don't get paid so you can't make rent. The landlord locks the door and throws your belongings into the street.\n";
         cout << R"( 
                           /\    
@@ -211,8 +212,31 @@ void day1()
 
         cout << "You can try to hunt for an ape in the jungle or search for some wild fruits nearby.\n";
         cout << "What will you do? (hunt / search)\n";
-        cin >> stayAtMine;
+        cin >> foodSearch;
+        // Hunting for food:
+        if (foodSearch == "hunt")
+        {
+            cout << "You venture into the jungle and after a few hours, you successfully track and kill an ape.\n";
+            cout << "While the meat will feed you, the guilt weighs heavy on your conscience.\n";
+            cout << "You lose 3 LP from the stress of killing an animal for food.\n";
+            lifePts -= 3;
+            printLifeBar(lifePts);
+        }
+        // Searching for fruits:
+        else if (foodSearch == "search")
+        {
+            cout << "You spend the day searching for edible fruits but find little to satisfy your hunger.\n";
+            cout << "You lose 2 LP from hunger and fatigue.\n";
+            lifePts -= 2;
+            printLifeBar(lifePts);
+        }
     }
+
+    // Consequence of staying home longer:
+    cout << "\nAs the night falls, you realize you can't avoid your situation any longer. You are exhausted, hungry, and homeless.\n";
+    cout << "The future looks bleak. Your family depends on you, but without work, survival grows increasingly difficult.\n";
+
+    cout << "\nWill you go back to work tomorrow? Or will you risk it all staying home and hope for a better outcome?\n";
 
 }
 
