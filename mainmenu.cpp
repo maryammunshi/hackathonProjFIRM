@@ -223,6 +223,7 @@ void escape()
     cout << "You barely escape before it fills completely. You're soaked and exhausted.\n\n";
     pointDecrease();
     printLifeBar(lifePts);
+    kwanga();
 }
 void goHome()
 {
@@ -265,7 +266,7 @@ void search()
 }
 void kwanga()
 {
-    cout << "You have little money, but you scrape enough together to "
+    cout << "\n\nYou have little money, but you scrape enough together to "
         << "buy cassava to make kwanga (fermented cassava bread).\n";
     bedTime();
     return;
