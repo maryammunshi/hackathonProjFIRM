@@ -1,10 +1,10 @@
-// disasters: evicted, house burned down,
+/ disasters: evicted, house burned down,
 // it rains --> collaspses + flooding,
-// collaspes, lack of protective gear, drowning,
-// malaria, birth defects, asked to leave buying
+// collaspes, lack of protective gear, drowning, 
+// malaria, birth defects, asked to leave buying 
 // house when asking for decent money, child died in the mines,
-// no food you have no choice but to hunt for an ape,
-// you found a piece of colbalt, sharpened tool, tetanus,
+// no food you have no choice but to hunt for an ape, 
+// you found a piece of colbalt, sharpened tool, tetanus, 
 
 #include <iostream>
 #include <string>
@@ -36,7 +36,8 @@ void stayHome();
 void goToMines();
 void escape();
 void stayAtWork();
-//void goBackToWork();
+void pointDecrease();
+void dead();
 void goHome();
 void flood();
 void foodSearch();
@@ -44,7 +45,6 @@ void hunt();
 void search();
 void bedTime();
 void kwanga();
-void pointDecrease();
 //MAIN FUNCTION
 int main() {
     displayHome();
@@ -71,10 +71,10 @@ void displayHome()
             << "and the smell of wet rock." << endl;
         cout << "\nYou’ve started the week with 100 points, which represents "
             << "your life bar. \nBut this will not last forever, and every decision today will impact the \nrest of the week.\n"
-            << "\nYour goal is to not die – that is, reach 0 in the health bar – by the end of the week.\n"
+            << "\nYour goal is to not die – that is, reach 0 in the health bar – by the end of the week.\n" // fix
             << "Although the Democratic Republic of Congo (DRC) is abundant in natural resources, it \nremains the second "
             << "poorest country globally. The life expectancy in DRC is only 47 years \nfor men and 51 years for women. "
-            << "This is significantly lower than the average of 81.2 \nyears in the UK.\n";
+            << "This is significantly lower than the average of 77.4 \nyears in the US.\n";
         cout << "\nWill *you* be able to survive the DRC?\n" << endl;
         person = displayStart(person);
     }
@@ -114,38 +114,37 @@ Miner displayStart(Miner p1)
     cin.get(tempStruct.gender);
     if (tempStruct.gender == 'm')
     {
-        cout << R"(
+        cout << R"(    
                   O
                  /|\   <-YOU
                  / \ )" << endl;
     }
     else if (tempStruct.gender == 'f')
     {
-        cout << R"(
+        cout << R"(    
                   O
                  /|\   <-YOU
                  /_\ )" << endl;
     }
     cout << "You start with 100 life points.\n";
     printLifeBar(lifePts);
-    cout << "\n Hello " << tempStruct.name << "...\n";
     return tempStruct;
 }
 
 void day1()
 {
-    raining();
+    raining();         
 
-    //cout << "The future looks bleak. Your family depends on you,"
+    //cout << "The future looks bleak. Your family depends on you," 
       //      << "but without work, survival grows invreasingly difficult.\n";
     cout << "\nWill you go back to work tomorrow? Or will you risk it all staying"
-        << " home and hope for a better outcome\n";
+        << " home and hope for a better outcome?\n";
 }
 
 void raining()
 {
     char goToWork;
-    cout << "It's raining this morning." << R"(
+    cout << "\n\nIt's raining this morning." << R"( 
                            (   )
                          (      )
                         (______)__)
@@ -160,7 +159,7 @@ void raining()
 void goToMines()
 {
     char stayAtMine;
-    cout << "You arrive at the mine and descend.\n" << "You quickly get to work. The enivorment is toxic. You lose LP\n\n";
+    cout << "You arrive at the mine and descend.\n" << "You quickly get to work. The enivorment is toxic. You lose 5 LP\n\n";
     pointDecrease();
     printLifeBar(lifePts);
     //insert pickaxe here
@@ -168,11 +167,11 @@ void goToMines()
         _______________________________
         \                             /
          \   _____       _____       /
-          \_/     \_____/     \_____/
+          \_/     \_____/     \_____/ 
               ---
              /   \
               ---  )" << endl
-        << "The mine's weak ceiling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose LP.\n\n";
+        << "The mine's weak ceiling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose 5 LP.\n\n";
     pointDecrease();
     printLifeBar(lifePts);
 
@@ -189,7 +188,7 @@ void goToMines()
 void stayAtWork()
 {
     char leave;
-    cout << "\n\nYou earn more money for working longer.\n";
+    cout << "\n\nYou earn more money for working longer. You gain 5 LP.\n";
     pointDecrease();
     printLifeBar(lifePts);
 
@@ -205,14 +204,14 @@ void stayHome()
 {
 
     cout << "You don't get paid so you can't make rent. The landlord locks the door and throws your belongings into the street.\n";
-    cout << R"(
-                          /\
-                         /  \
-                        /____\
-                        | [] |
+    cout << R"( 
+                          /\    
+                         /  \   
+                        /____\  
+                        | [] |  
                         |____| )" << endl;
 
-    cout << "You lose LP.\n" << endl;
+    cout << "You lose 5 LP.\n" << endl;
     pointDecrease();
     printLifeBar(lifePts);
 
@@ -224,15 +223,15 @@ void flood()
     cout << "\n\nYou were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive."
         << R"(
                          (-_-)
-                          /|\
+                          /|\ 
                           / \   )"
-        << "\nYou lose LP.\n\n";
+        << "\nYou lose 20 LP.\n\n";
     pointDecrease();
     printLifeBar(lifePts);
 }
 void escape()
 {
-    cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose LP.\n\n";
+    cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose 5 LP.\n\n";
     pointDecrease();
     printLifeBar(lifePts);
 }
@@ -261,9 +260,9 @@ void hunt()
 {
     {
         cout << "\nYou venture into the jungle and after a few hours, you successfully track and kill an ape.\n\n";
-        cout << "While the meat will feed you, the risk was great. It is illegal to hunt "
+        cout << "While the meat will feed you, the risk was great. It is illegal to hunt " 
             << "for apes and dangerous too, but what else was there to eat?\n\n";
-        cout << "You lose LP from the stress of killing an animal for food.\n\n";
+        cout << "You lose 3 LP from the stress of killing an animal for food.\n\n";
         pointDecrease();
         printLifeBar(lifePts);
         bedTime();
@@ -272,7 +271,7 @@ void hunt()
 void search()
 {
     cout << "You spend the rest of the day searching for edible fruits but find little to satisfy your hunger.\n\n";
-    cout << "You lose LP from hunger and fatigue.\n\n";
+    cout << "You lose 2 LP from hunger and fatigue.\n\n";
     pointDecrease();
     printLifeBar(lifePts);
     bedTime();
@@ -286,33 +285,32 @@ void kwanga()
 }
 void bedTime()
 {
-    this_thread::sleep_for(chrono::seconds(1));
     cout << "\n\nYou're exhausted, every bone aches. You crawl into bed in the inky blackness of the deep night.\n";
 }
 void pointDecrease()
 {
     if (person.age > 0 && person.age < 18)
     {
-        lifePts-=10;
-            if (person.gender == 'f')
-            {
-                lifePts-=10;
-            }
-            else{
-                lifePts -=5;
-            }
-        
+        lifePts -= 10;
+        if (person.gender == 'f')
+        {
+            lifePts -= 10;
+        }
+        else {
+            lifePts -= 5;
+        }
+
     }
     else
     {
-        lifePts-=5;
+        lifePts -= 5;
     }
-}
-bool deadOrAlive()
+bool dead()
 {
     if (lifePts <= 0)
     {
         //
+        return true;
     }
-    return true;
+    return false;
 }
