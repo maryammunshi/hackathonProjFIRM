@@ -86,7 +86,7 @@ void printLifeBar(int current) {
     cout << "	\033[34m[";
     for (int i = 0; i < barWidth; ++i) {
         if (i < filledBars)
-            cout << "♡"; //or cout<<\u2665;
+            cout << "#"; //or cout<<\u2665;
         else
             cout << "-";
     }
