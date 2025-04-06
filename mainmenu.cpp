@@ -38,11 +38,16 @@ void stayAtWork();
 void goBackToWork();
 void goHome();
 void flood();
+void foodSearch();
+void hunt();
+void search();
 //MAIN FUNCTION
 int main() {
     displayHome();
     day1();
 
+    cout << endl;
+    system("pause");
     return 0;
 }
 
@@ -129,23 +134,13 @@ Miner displayStart(Miner p1)
 void day1()
 {
     raining();         
+
+    cout << "The future looks bleak. Your family depends on you," 
+            << "but without work, survival grows invreasingly difficult.\n";
+    cout << "\n Will you go back to work tomorrow? Or will you risk it all staying"
+        << "home and hope for a better outcome\n";
 }
 
-//void events()
-//{
-//    srand(time(0));
-//    int choice = rand() % 10;
-//    switch (choice)
-//    {
-//    case 0:
-//    case 1:
-//    case 2:
-//    case 3:
-//    case 5:
-//    case 6:
-//    case 7:
-//    }
-//}
 void raining()
 {
     char goToWork;
@@ -164,8 +159,8 @@ void raining()
 void goToMines()
 {
     char stayAtMine;
-    cout << "You arrive at the mine and decend.\n" << "You are the first one in and find a new pickaxe. You gain 5 LP.\n\n";
-    lifePts += 5;
+    cout << "You arrive at the mine and descend.\n" << "You quickly get to work. The enivorment is toxic. You lose 5 LP\n\n";
+    lifePts -= 5;
     printLifeBar(lifePts);
     //insert pickaxe here
     cout << "\nYou are busy working, and don't notice the ceiling above you." << R"(
@@ -179,14 +174,12 @@ void goToMines()
         << "The mine's weak ceiling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose 5 LP.\n\n";
     lifePts -= 5;
     printLifeBar(lifePts);
-    //insert pickaxe here
 
     cout << "You rip off some of your shirt to use as a bandage and get back to work.\n After an hour you're really feeling fatigued. Should you go home for the day? (y/n) ";
     cin >> stayAtMine;
     //they leave
     if (stayAtMine == 'y' || stayAtMine == 'Y')
         goHome();
-       // cout << "no $$$$";//idk yet maybe more money
     else if (stayAtMine == 'n' || stayAtMine == 'N')
         stayAtWork();
 
@@ -223,6 +216,8 @@ void stayHome()
     cout << "You lose 5 LP.\n" << endl;
     lifePts -= 5;
     printLifeBar(lifePts);
+
+    cout << "You and your family are hungry.";
 }
 void flood()
 {
@@ -243,5 +238,35 @@ void escape()
 }
 void goHome()
 {
-    cout << "You went home!";
+    cout << "You have to go home.\n";
+
+    //cout << "However, "
+}
+void foodSearch()
+{
+    string foodSearch;
+    cout << "You can try to hunt for an ape in the jungle or search for some wild fruits nearby.\n";
+    cout << "What will you do? (hunt / search)\n";
+
+    if (foodSearch == "hunt")
+        hunt();
+    else if (foodSearch == "search")
+        search();
+}
+void hunt()
+{
+    {
+        cout << "You venture into the jungle and after a few hours, you successfully track and kill an ape.\n";
+        cout << "While the meat will feed you, the guilt weighs heavy on your conscience.\n"; // fix
+        cout << "You lose 3 LP from the stress of killing an animal for food.\n";
+        lifePts -= 3;
+        printLifeBar(lifePts);
+    }
+}
+void search()
+{
+    cout << "You spend the day searching for edible fruits but find little to satisfy your hunger.\n";
+    cout << "You lose 2 LP from hunger and fatigue.\n";
+    lifePts -= 2;
+    printLifeBar(lifePts);
 }
