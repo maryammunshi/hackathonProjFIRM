@@ -1,19 +1,20 @@
 // disasters: evicted, house burned down,
 // it rains --> collaspses + flooding,
-// collaspes, lack of protective gear, drowning,
-// malaria, birth defects, asked to leave buying
+// collaspes, lack of protective gear, drowning, 
+// malaria, birth defects, asked to leave buying 
 // house when asking for decent money, child died in the mines,
-// no food you have no choice but to hunt for an ape,
-// you found a piece of colbalt, sharpened tool, tetanus,
+// no food you have no choice but to hunt for an ape, 
+// you found a piece of colbalt, sharpened tool, tetanus, 
 
 #include <iostream>
 #include <string>
-#include <cstdlib>
-#include <ctime>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
 int lifePts = 100;
+
 
 //structs
 struct Miner
@@ -31,16 +32,18 @@ void printLifeBar(int current);
 Miner displayStart(Miner);
 void day1();
 void raining();
-void stayHome(int, char);
-void goToMines(int, char);
-void escape(int, char);
+void stayHome();
+void goToMines();
+void escape();
 void stayAtWork();
-void goBackToWork();
+//void goBackToWork();
 void goHome();
-void flood(int, char);
+void flood();
 void foodSearch();
-void hunt(int, char);
-void search(int, char);
+void hunt();
+void search();
+void bedTime();
+void kwanga();
 //MAIN FUNCTION
 int main() {
     displayHome();
@@ -81,6 +84,7 @@ void displayHome()
     }
 }
 
+
 void printLifeBar(int current) {
     int max = 100;
     int barWidth = 10; // show only 10 characters total
@@ -89,7 +93,7 @@ void printLifeBar(int current) {
     cout << "[";
     for (int i = 0; i < barWidth; ++i) {
         if (i < filledBars)
-            cout << "#";
+            cout << "♡"; //or cout<<\u2665;
         else
             cout << "-";
     }
@@ -109,53 +113,53 @@ Miner displayStart(Miner p1)
     cin.get(tempStruct.gender);
     if (tempStruct.gender == 'm')
     {
-        cout << R"(
+        cout << R"(    
                   O
                  /|\   <-YOU
                  / \ )" << endl;
     }
     else if (tempStruct.gender == 'f')
     {
-        cout << R"(
+        cout << R"(    
                   O
                  /|\   <-YOU
                  /_\ )" << endl;
     }
     cout << "You start with 100 life points.\n";
     printLifeBar(lifePts);
-    
+    cout << "\n Hello " << tempStruct.name << "...\n";
     return tempStruct;
 }
 
 void day1()
 {
-    raining();
+    raining();         
 
-    cout << "The future looks bleak. Your family depends on you,"
-            << "but without work, survival grows invreasingly difficult.\n";
-    cout << "\n Will you go back to work tomorrow? Or will you risk it all staying"
-        << "home and hope for a better outcome\n";
+    //cout << "The future looks bleak. Your family depends on you," 
+      //      << "but without work, survival grows invreasingly difficult.\n";
+    cout << "\nWill you go back to work tomorrow? Or will you risk it all staying"
+        << " home and hope for a better outcome\n";
 }
 
 void raining()
 {
     char goToWork;
-    cout << "It's raining this morning." << R"(
+    cout << "It's raining this morning." << R"( 
                            (   )
                          (      )
                         (______)__)
                           ' ' ' '
-                           ' ' ' ' )" << endl << "Will you go to work? (y / n): ";
+                           ' ' ' ' )" << endl << "Will you go to work? (y / n) ";
     cin >> goToWork;
     if (goToWork == 'y' || goToWork == 'Y')
-        goToMines(person.age, person.gender);
+        goToMines();
     else if (goToWork == 'n' || goToWork == 'N')
-        stayHome(person.age, person.gender);
+        stayHome();
 }
-void goToMines(int age, char gender)
+void goToMines()
 {
     char stayAtMine;
-    cout << "You arrive at the mine and descend.\n" << "You quickly get to work. The environment is toxic. You lose LP\n\n";
+    cout << "You arrive at the mine and descend.\n" << "You quickly get to work. The enivorment is toxic. You lose 5 LP\n\n";
     lifePts -= 5;
     printLifeBar(lifePts);
     //insert pickaxe here
@@ -163,7 +167,7 @@ void goToMines(int age, char gender)
         _______________________________
         \                             /
          \   _____       _____       /
-          \_/     \_____/     \_____/
+          \_/     \_____/     \_____/ 
               ---
              /   \
               ---  )" << endl
@@ -171,7 +175,7 @@ void goToMines(int age, char gender)
     lifePts -= 5;
     printLifeBar(lifePts);
 
-    cout << "You rip off some of your shirt to use as a bandage and get back to work.\n After an hour you're really feeling fatigued. Should you go home for the day? (y/n) ";
+    cout << "\n\nYou rip off some of your shirt to use as a bandage and get back to work.\nAfter an hour you're feeling fatigued. Should you go home for the day? (y/n) ";
     cin >> stayAtMine;
     //they leave
     if (stayAtMine == 'y' || stayAtMine == 'Y')
@@ -184,27 +188,27 @@ void goToMines(int age, char gender)
 void stayAtWork()
 {
     char leave;
+    cout << "\n\nYou earn more money for working longer. You gain 5 LP.\n";
+    lifePts -= 5;
     printLifeBar(lifePts);
 
-    cout << "The rain outside gets heavier. Rainwater floods one of the main shafts. Do you try to escape? (y/n) ";
+    cout << "\n\nThe rain outside gets heavier. Rainwater floods one of the main shafts. Do you try to escape? (y/n) ";
     cin >> leave;
 
     if (leave == 'y' || leave == 'Y')
-        escape(person.age, person.gender);
+        escape();
     else if (leave == 'n' || leave == 'N')
-        cout << "flood";
-      flood(person.age, person.gender);
-
+      flood();
 }
-void stayHome(int age, char gender)
+void stayHome()
 {
 
     cout << "You don't get paid so you can't make rent. The landlord locks the door and throws your belongings into the street.\n";
-    cout << R"(
-                          /\
-                         /  \
-                        /____\
-                        | [] |
+    cout << R"( 
+                          /\    
+                         /  \   
+                        /____\  
+                        | [] |  
                         |____| )" << endl;
 
     cout << "You lose 5 LP.\n" << endl;
@@ -212,19 +216,20 @@ void stayHome(int age, char gender)
     printLifeBar(lifePts);
 
     cout << "You and your family are hungry.";
+    foodSearch();
 }
-void flood(int age, char gender)
+void flood()
 {
-    cout << "You were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive."
+    cout << "\n\nYou were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive."
         << R"(
                          (-_-)
-                          /|\
+                          /|\ 
                           / \   )"
         << "\nYou lose 20 LP.\n\n";
     lifePts -= 20;
     printLifeBar(lifePts);
 }
-void escape(int age, char gender)
+void escape()
 {
     cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose 5 LP.\n\n";
     lifePts -= 5;
@@ -232,35 +237,54 @@ void escape(int age, char gender)
 }
 void goHome()
 {
-    cout << "You have to go home.\n";
+    cout << "\nYou decide you needed to go home.\n\n";
 
-    //cout << "However, "
+    foodSearch();
+
 }
 void foodSearch()
 {
     string foodSearch;
+    cout << "However, you leaving early means you don't have enough money to buy food.\n\n";
     cout << "You can try to hunt for an ape in the jungle or search for some wild fruits nearby.\n";
-    cout << "What will you do? (hunt / search)\n";
+    cout << "What will you do? (hunt / search) ";
+
+    cin >> foodSearch;
 
     if (foodSearch == "hunt")
-        hunt(person.age, person.gender);
+        hunt();
     else if (foodSearch == "search")
-        search(person.age, person.gender);
+        search();
 }
-void hunt(int age, char gender)
+void hunt()
 {
     {
-        cout << "You venture into the jungle and after a few hours, you successfully track and kill an ape.\n";
-        cout << "While the meat will feed you, the guilt weighs heavy on your conscience.\n"; // fix
-        cout << "You lose 3 LP from the stress of killing an animal for food.\n";
+        cout << "\nYou venture into the jungle and after a few hours, you successfully track and kill an ape.\n\n";
+        cout << "While the meat will feed you, the risk was great. It is illegal to hunt " 
+            << "for apes and dangerous too, but what else was there to eat?\n\n";
+        cout << "You lose 3 LP from the stress of killing an animal for food.\n\n";
         lifePts -= 3;
         printLifeBar(lifePts);
+        bedTime();
     }
 }
-void search(int age, char gender)
+void search()
 {
-    cout << "You spend the day searching for edible fruits but find little to satisfy your hunger.\n";
-    cout << "You lose 2 LP from hunger and fatigue.\n";
+    cout << "You spend the rest of the day searching for edible fruits but find little to satisfy your hunger.\n\n";
+    cout << "You lose 2 LP from hunger and fatigue.\n\n";
     lifePts -= 2;
     printLifeBar(lifePts);
+    bedTime();
+}
+void kwanga()
+{
+    cout << "You have little money, but you scrape enough together to "
+        << "buy cassava to make kwanga (fermented cassava bread).\n";
+    bedTime();
+    return;
+}
+void bedTime()
+{
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "\n\nYou're exhausted, every bone aches. You crawl into bed in the inky blackness of the deep night.\n";
 }
