@@ -30,7 +30,14 @@ void displayHome();
 void printLifeBar(int current);
 Miner displayStart(Miner);
 void day1();
-
+void raining();
+void stayHome();
+void goToMines();
+void escape();
+void stayAtWork();
+void goBackToWork();
+void goHome();
+void flood();
 //MAIN FUNCTION
 int main() {
     displayHome();
@@ -121,23 +128,47 @@ Miner displayStart(Miner p1)
 
 void day1()
 {
-    char boolStayHome, stayAtMine, boolEscape;
+    raining();         
+}
+
+//void events()
+//{
+//    srand(time(0));
+//    int choice = rand() % 10;
+//    switch (choice)
+//    {
+//    case 0:
+//    case 1:
+//    case 2:
+//    case 3:
+//    case 5:
+//    case 6:
+//    case 7:
+//    }
+//}
+void raining()
+{
+    char goToWork;
     cout << "It's raining this morning." << R"( 
                            (   )
                          (      )
                         (______)__)
                           ' ' ' '
                            ' ' ' ' )" << endl << "Will you go to work? (y / n) \n";
-    cin >> boolStayHome;
-
-    //they go to the mines
-    if (boolStayHome == 'y' || boolStayHome == 'Y')
-    {
-        cout << "You arrive at the mine and decend.\n" << "You are the first one in and find a new pickaxe. You gain 5 LP.\n\n";
-        lifePts += 5;
-        printLifeBar(lifePts);
-        //insert pickaxe here
-        cout << "\nYou are busy working, and don't notice the ceiling above you." << R"(
+    cin >> goToWork;
+    if (goToWork == 'y' || goToWork == 'Y')
+        goToMines();
+    else if (goToWork == 'n' || goToWork == 'N')
+        stayHome();
+}
+void goToMines()
+{
+    char stayAtMine;
+    cout << "You arrive at the mine and decend.\n" << "You are the first one in and find a new pickaxe. You gain 5 LP.\n\n";
+    lifePts += 5;
+    printLifeBar(lifePts);
+    //insert pickaxe here
+    cout << "\nYou are busy working, and don't notice the ceiling above you." << R"(
         _______________________________
         \                             /
          \   _____       _____       /
@@ -145,191 +176,72 @@ void day1()
               ---
              /   \
               ---  )" << endl
-            << "The mine's weak cieling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose 5 LP.\n\n";
-        lifePts -= 5;
-        printLifeBar(lifePts);
-        //insert pickaxe here
+        << "The mine's weak ceiling couldn't handle the pressure from the rain. A portion collpses while you are inside. You lose 5 LP.\n\n";
+    lifePts -= 5;
+    printLifeBar(lifePts);
+    //insert pickaxe here
 
-        cout << "You rip off some of your shirt to use as a bandage and get back to work.\n After an hour you're really feeling fatigued. Should you go home for the day? (y/n) ";
-        cin >> stayAtMine;
-        
-        //they leave
-        if (stayAtMine == 'y' || stayAtMine == 'Y')
-        {
-            //idk yet maybe more money
-        }
+    cout << "You rip off some of your shirt to use as a bandage and get back to work.\n After an hour you're really feeling fatigued. Should you go home for the day? (y/n) ";
+    cin >> stayAtMine;
+    //they leave
+    if (stayAtMine == 'y' || stayAtMine == 'Y')
+        goHome();
+       // cout << "no $$$$";//idk yet maybe more money
+    else if (stayAtMine == 'n' || stayAtMine == 'N')
+        stayAtWork();
 
-        //they stay
-        else if (stayAtMine == 'n' || stayAtMine == 'N')
-        {
-            cout << "You earn more money for working longer. You gain 5 LP.";
-            lifePts -= 5;
-            printLifeBar(lifePts);
 
-            cout << "The rain outside gets heavier. Rainwater floods one of the main shafts. Do you try to escape? (y/n) ";
-            cin >> boolEscape;
-            if (boolEscape == 'y' || boolEscape == 'Y')
-            {
-                cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose 5 LP.\n\n";
-                lifePts -= 5;
-                printLifeBar(lifePts);
-            }
+}
+void stayAtWork()
+{
+    char leave;
+    cout << "You earn more money for working longer. You gain 5 LP.";
+    lifePts -= 5;
+    printLifeBar(lifePts);
 
-            //give up
-            else if (boolEscape == 'n' || boolEscape == 'N')
-            {
-                cout << "You were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive."
-                    << R"(
+    cout << "The rain outside gets heavier. Rainwater floods one of the main shafts. Do you try to escape? (y/n) ";
+    cin >> leave;
+
+    if (leave == 'y' || leave == 'Y')
+        escape();
+    else if (leave == 'n' || leave == 'N')
+        cout << "flood";
+      flood();
+
+}
+void stayHome()
+{
+
+    cout << "You don't get paid so you can't make rent. The landlord locks the door and throws your belongings into the street.\n";
+    cout << R"( 
+                          /\    
+                         /  \   
+                        /____\  
+                        | [] |  
+                        |____| )" << endl;
+
+    cout << "You lose 5 LP.\n" << endl;
+    lifePts -= 5;
+    printLifeBar(lifePts);
+}
+void flood()
+{
+    cout << "You were too exhausted to escape. Luckily, a fellow miner rescued you. Unfortunatley, the damage was extensive."
+        << R"(
                          (-_-)
                           /|\ 
                           / \   )"
-                    << "\nYou lose 20 LP.\n\n";
-                lifePts -= 20;
-                printLifeBar(lifePts);
-            }
-        }
-    }
-
-    //they dont go to the mines
-    else if (boolStayHome == 'n' || boolStayHome == 'N')
-    {
-        string foodSearch;
-        cout << "You don't get paid so you can't make rent. The landlord locks the door and throws your belongings into the street.\n";
-        cout << R"( 
-                          /\    
-                         /  \   
-                        /____\  
-                        | [] |  
-                        |____| )" << endl;
-
-        cout << "You lose 5 LP.\n" << endl;
-        lifePts -= 5;
-        printLifeBar(lifePts);
-
-        // Consequence: Hunger or survival choices
-        cout << "With no shelter and no money, you go without food for the day. Your stomach growls in hunger.\n";
-        cout << "You realize you need to find food to survive. What will you do next?\n";
-
-        cout << "You can try to hunt for an ape in the jungle or search for some wild fruits nearby.\n";
-        cout << "What will you do? (hunt / search)\n";
-        cin >> foodSearch;
-        // Hunting for food:
-        if (foodSearch == "hunt")
-        {
-            cout << "You venture into the jungle and after a few hours, you successfully track and kill an ape.\n";
-            cout << "While the meat will feed you, the guilt weighs heavy on your conscience.\n";
-            cout << "You lose 3 LP from the stress of killing an animal for food.\n";
-            lifePts -= 3;
-            printLifeBar(lifePts);
-        }
-        // Searching for fruits:
-        else if (foodSearch == "search")
-        {
-            cout << "You spend the day searching for edible fruits but find little to satisfy your hunger.\n";
-            cout << "You lose 2 LP from hunger and fatigue.\n";
-            lifePts -= 2;
-            printLifeBar(lifePts);
-        }
-    }
-
-    // Consequence of staying home longer:
-    cout << "\nAs the night falls, you realize you can't avoid your situation any longer. You are exhausted, hungry, and homeless.\n";
-    cout << "The future looks bleak. Your family depends on you, but without work, survival grows increasingly difficult.\n";
-
-    cout << "\nWill you go back to work tomorrow? Or will you risk it all staying home and hope for a better outcome?\n";
-
+        << "\nYou lose 20 LP.\n\n";
+    lifePts -= 20;
+    printLifeBar(lifePts);
 }
-
-void events()
+void escape()
 {
-    srand(time(0));
-    int choice = rand() % 10;
-    switch (choice)
-    {
-    case 0:
-    {
-        cout << R"( 
-                           (   )
-                         (      )
-                        (______)__)
-                          ' ' ' '
-                           ' ' ' ' )" << endl;
-        cout << "It rained heavily last night. The mine's weak walls couldn't handle the pressure. A portion collapsed while you were inside. You lose 5 LP.";
-        lifePts -= 5;
-        break;
-    }
-    case 1:
-    {
-        cout << R"( 
-                          /\    
-                         /  \   
-                        /____\  
-                        | [] |  
-                        |____| )" << endl;
-        cout << "Your family couldn't make rent. The landlord locked the door and threw your belongings into the street. You spent the night exposed and hungry. You lose 5 LP." << endl;
-        lifePts -= 5;
-        break;
-    }
-    case 2:
-    {
-        cout << R"( 
-                           ___________
-                          /           \
-                         | ~ FLOODED ~ |
-                         |__~__~__~__~_|)" << endl;
-        cout << "Rainwater flooded one of the main shafts. You barely escaped before it filled completely. You're soaked and exhausted. You lose 5 LP." << endl;
-        lifePts -= 5;
-        break;
-    }
-    case 3:
-    {
-        cout << R"(
-                        (-_-)
-                         /|\ 
-                         / \   )" << endl;
-        cout << "A mosquito bite turned deadly. Fever, chills, and pain hit you all at once. You have malaria. You lose 5 LP." << endl;
-        lifePts -= 5;
-        break;
-    }
-    case 5:
-    {
-        cout << R"(
-                         |\
-                         |==>
-                         |/  )" << endl;
-        cout << "You were starving. With no other food available, you tracked and killed an ape. It gave you meat, but the guilt remains. You lose 3 LP." << endl;
-        lifePts -= 5;
-        break;
-    }
-    case 6:
-    {
-        cout << R"(
-                               ______
-                              | |    |
-                              | |    |
-                         _____|_|    |
-                        (  (         |
-                         \__\________|
-                          
-                          )" << endl;
-        cout << "You found some shoes! You get 5 LP" << endl;
-        lifePts += 5;
-
-
-    }
-    case 7:
-    {
-        cout << R"(
-                              
-               _
-        $$    / \       _______
-              \_/     / \
-                     /   \
-                    /     \
-                           \
-                            \
- )" << endl;
-        cout << "You found some cobalt! You get 5 LP." << endl;
-    }
-    }
+    cout << "You barely escape before it fills completely. You're soaked and exhausted. You lose 5 LP.\n\n";
+    lifePts -= 5;
+    printLifeBar(lifePts);
+}
+void goHome()
+{
+    cout << "You went home!";
 }
