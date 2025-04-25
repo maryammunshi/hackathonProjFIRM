@@ -30,7 +30,6 @@ void escape();
 void stayAtWork();
 void pointDecrease();
 bool dead();
-void goHome();
 void flood();
 void foodSearch();
 void hunt();
@@ -53,28 +52,8 @@ void displayHome()
     char key;
     cout << "  5 Days of Life in the Mines\n";
     cout << "------------------------------------\n";
-    cout << "PRESS S TO START, ANY OTHER KEY TO QUIT: ";
-    cin.get(key);
-    if (key == 's' || key == 'S')
-    {
-        cout << "\nYou are a cobalt miner in the Democratic Republic of Congo (DRC).\n" << endl;
-        cout << "The morning is cold and damp. You, along with the other miners, \ngather at the entrance"
-            << "to the cobalt mine. The ground is slippery, \nand the air is thick with dust "
-            << "and the smell of wet rock." << endl;
-        cout << "\nYou’ve started the week with 100 points, which represents "
-            << "your life bar. \nBut this will not last forever, and every decision today will impact the \nrest of the week.\n"
-            << "\nYour goal is to not die – that is, reach 0 in the health bar – by the end of the week.\n" // fix
-            << "Although the Democratic Republic of Congo (DRC) is abundant in natural resources, it \nremains the second "
-            << "poorest country globally. The life expectancy in DRC is only 47 years \nfor men and 51 years for women. "
-            << "This is significantly lower than the average of 77.4 \nyears in the US.\n";
-        cout << "\nWill *you* be able to survive the DRC?\n" << endl;
-        person = displayStart(person);
-    }
-    else
-    {
-        cout << "\nYou chose to quit.\n";
-        return;
-    }
+    cout << "\nYou are a cobalt miner in the Democratic Republic of Congo (DRC).\nHow long can you survive?" << endl;
+    person = displayStart(person);
 }
 
 
@@ -83,7 +62,7 @@ void printLifeBar(int current) {
     int barWidth = 10; // show only 10 characters total
     int filledBars = (current * barWidth) / max;
 
-    cout << "	\033[34m[";
+    cout << "\n	\033[32m[";
     for (int i = 0; i < barWidth; ++i) {
         if (i < filledBars)
             cout << "#"; //or cout<<\u2665;
@@ -96,7 +75,6 @@ void printLifeBar(int current) {
 Miner displayStart(Miner p1)
 {
     Miner tempStruct;
-    cin.ignore();
     cout << "\nEnter character name: ";
     getline(cin, tempStruct.name);
     cout << "Enter character age: ";
@@ -106,17 +84,18 @@ Miner displayStart(Miner p1)
     cin.get(tempStruct.gender);
     if (tempStruct.gender == 'm')
     {
-        cout << R"(    
-                  O
-                 /|\   <-YOU
-                 / \ )" << endl;
+        cout << "\033[34m" << R"(   
+          O
+         /|\   <- YOU
+         / \ 
+)" << "\033[0m" << endl << endl;
     }
     else if (tempStruct.gender == 'f')
     {
-        cout << R"(    
+        cout << "\033[35m" << R"(    
                   O
                  /|\   <-YOU
-                 /_\ )" << endl;
+                 /_\ )" << "\033[0m" << endl << endl;
     }
     cout << "You start with 100 life points.\n";
     printLifeBar(lifePts);
@@ -136,12 +115,12 @@ void day1()
 void raining()
 {
     char goToWork;
-    cout << "\n\nIt's raining this morning." << R"( 
+    cout << "\n\nIt's raining this morning." << "\033[34m" << R"( 
                            (   )
                          (      )
                         (______)__)
                           ' ' ' '
-                           ' ' ' ' )" << endl << "Will you go to work? (y / n) ";
+                           ' ' ' ' )" << "\033[0m" << endl << "Will you go to work? (y / n) ";
     cin >> goToWork;
     if (goToWork == 'y' || goToWork == 'Y')
         goToMines();
@@ -151,19 +130,19 @@ void raining()
 void goToMines()
 {
     char stayAtMine;
-    cout << "You arrive at the mine and descend.\n" << "You quickly get to work. The enivorment is toxic. ";
+    cout << "\nYou arrive at the mine and descend.\n" << "You quickly get to work. The enivorment is toxic. ";
     pointDecrease();
     printLifeBar(lifePts);
     //insert pickaxe here
-    cout << "\nYou are busy working, and don't notice the ceiling above you." << R"(
+    cout << "\033[33m" << "\n\nYou are busy working, and don't notice the ceiling above you." << R"(
         _______________________________
         \                             /
          \   _____       _____       /
           \_/     \_____/     \_____/ 
               ---
              /   \
-              ---  )" << endl
-        << "The mine's weak ceiling couldn't handle the pressure from the rain. A portion collpses while you are inside.\n\n";
+              ---  )" << "\033[0m" << endl
+        << "The mine's weak ceiling couldn't handle the pressure from the rain. A portion collpses while you are inside.\n";
     pointDecrease();
     printLifeBar(lifePts);
 
@@ -171,7 +150,7 @@ void goToMines()
     cin >> stayAtMine;
     //they leave
     if (stayAtMine == 'y' || stayAtMine == 'Y')
-        goHome();
+        foodSearch();
     else if (stayAtMine == 'n' || stayAtMine == 'N')
         stayAtWork();
 
@@ -224,17 +203,10 @@ void escape()
     pointDecrease();
     printLifeBar(lifePts);
 }
-void goHome()
-{
-    cout << "\nYou decide you needed to go home.\n\n";
-
-    foodSearch();
-
-}
 void foodSearch()
 {
     string foodSearch;
-    cout << "However, you leaving early means you don't have enough money to buy food.\n\n";
+    cout << "\n\nYour leaving early means you don't have enough money to buy food.\n";
     cout << "You can try to hunt for an ape in the jungle or search for some wild fruits nearby.\n";
     cout << "What will you do? (hunt / search) ";
 
@@ -248,7 +220,7 @@ void foodSearch()
 void hunt()
 {
     {
-        cout << "\nYou venture into the jungle and after a few hours, you successfully track and kill an ape.\n\n";
+        cout << "\n\nYou venture into the jungle and after a few hours, you successfully track and kill an ape.\n";
         cout << "While the meat will feed you, the risk was great. It is illegal to hunt "
             << "for apes and dangerous too, but what else was there to eat?\n\n";
         pointDecrease();
@@ -273,6 +245,13 @@ void kwanga()
 void bedTime()
 {
     cout << "\n\nYou're exhausted, every bone aches. You crawl into bed in the inky blackness of the deep night.\n";
+    cout << "\033[36m" << R"( 
+                          /\    
+                         /  \   
+                        /____\  
+                        | [] |  
+                        |____| )" << "\033[0m" << endl;
+
 }
 void pointDecrease()
 {
@@ -281,23 +260,23 @@ void pointDecrease()
         if (person.gender == 'f')
         {
             lifePts -= 20;
-            cout << "\033[31mYou lose 20 LP. \n\033[0m ";
+            cout << "\n\033[31mYou lose 20 LP. \n\033[0m ";
         }
         else {
             lifePts -= 15;
-            cout << "\033[31mYou lose 15 LP. \n\033[0m ";
+            cout << "\n\033[31mYou lose 15 LP. \n\033[0m ";
         }
 
     }
     else if (person.gender == 'm')
     {
         lifePts -= 10;
-        cout << "\033[31mYou lose 10 LP. \n\033[0m ";
+        cout << "\n\033[31mYou lose 10 LP. \n\033[0m ";
     }
     else
     {
         lifePts -= 15;
-        cout << "\033[31mYou lose 15 LP. \n\033[0m ";
+        cout << "\n\033[31mYou lose 15 LP. \n\033[0m ";
     }
 }
 bool dead()
